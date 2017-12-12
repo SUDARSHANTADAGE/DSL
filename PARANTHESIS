@@ -1,0 +1,104 @@
+#include<iostream>
+#define size 20
+using namespace std;
+class stack
+{
+public:
+char stk[size];
+int top;
+stack()
+{
+top=-1;
+}
+void push(char);
+int pop();
+int full();
+int empty();
+};
+void stack::push(char x)
+{
+ top++;
+ stk[top]=x;
+}
+int stack::pop()
+{
+ char s;
+ s=stk[top];
+ top--;
+ return s;
+}
+int stack::full()
+{
+if(top==size)
+{
+ return 1;
+}
+else
+return 0;
+}
+int stack::empty()
+{
+if(top==-1)
+return 1;
+else 
+return 0;
+}
+int main()
+{
+stack s;
+char exp[20],ch;
+int i=0;
+cout<<"\nEnter the expression";
+cin>>exp;
+if(exp[0]==')'||exp[0]==']'||exp[0]=='}')
+{
+ cout<<"\nIncorrect entry";
+}
+else
+{
+  while(exp[i]!='\0')
+ {
+  ch=exp[i];
+switch(ch)
+{
+case '(':s.push(ch);break;
+case '{':s.push(ch);break;
+case '[':s.push(ch);break;
+case ')':
+       if(s.stk[s.top]=='(')
+	s.pop();
+else
+{
+cout<<"\nError:( is missing";
+ break;
+}
+case ']':
+      if(s.stk[s.top]=='[')
+       s.pop();
+else
+{
+cout<<"\nError [ is missing";
+break;
+}
+case '}':
+      if(s.stk[s.top]=='{')
+      s.pop();
+else
+{
+cout<<"\nError { is missing";
+break;
+}
+}
+i++;
+}
+}
+if(s.empty())
+{
+cout<<"\nExpression is well parathesis";
+}
+else
+{
+cout<<"\nNot well";
+}
+return 0;
+}
