@@ -1,0 +1,97 @@
+#include<iostream>
+using namespace std;
+class pizza
+{
+int a[10];
+int r,f;
+public:
+	pizza()
+      {
+	r=-1;
+	f=-1;
+      }
+int full()
+{
+if((f==0&&r==9)||(f==(r+1)%10))
+{
+return 1;
+}
+else
+{
+return 0;
+}
+}
+int empty()
+{
+if(r==-1&&f==-1)
+{
+return 1;
+}
+else
+{
+return 0;
+}
+}
+void order(int x)
+{
+if(full())
+{
+cout<<"\nNo more oreder";
+}
+else
+{
+if(r==-1&&f==-1)
+{
+r++;
+f++;
+}
+else
+{
+r=(r+1)%10;
+}
+a[r]=x;
+}
+}
+void display()
+{
+int j;
+if(f==-1&&r==-1)
+{
+cout<<"\nNo oreder";
+}
+else
+j=f;
+while(j!=r)
+{
+ cout<<"\nPlaced Order no. is:"<<a[j];
+ j=(j+1)%10;
+}
+ cout<<"\nPlace order no. is:"<<a[j];
+}
+};
+int main()
+{
+pizza p;
+int ch,a,b;
+do
+{
+cout<<"\nEnter your choice\n1.Place the order\n2.display";
+cin>>ch;
+switch(ch)
+{
+case 1:
+	cout<<"\n1.corn pizza\n2.chease pizza \n3.panir pizza";
+	cin>>a;
+	p.order(a);
+	break;
+case 2:
+	p.display();
+	break;
+default:
+	cout<<"\nInvalid choice";
+}
+//cout<<"Do you want to continue (Y/N)?";
+//cin>>b;
+}while(1);
+return 0;
+}
