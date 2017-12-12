@@ -1,0 +1,84 @@
+#include<iostream>
+using namespace std;
+class sort
+#define max 20
+{
+float perc[max];
+int n;
+public:
+ 	void getdata();
+	void display();
+	void insertion();
+	void shell();
+	void top();
+};
+void sort::getdata()
+{
+cout<<"\nEnter the no. of students";
+cin>>n;
+cout<<"\nEnter the percentage of student";
+for(int i=0;i<n;i++)
+{
+cin>>perc[i];
+}
+}
+void sort::display()
+{
+cout<<"\nStudent list is:";
+for(int i=0;i<n;i++)
+{
+cout<<" "<<perc[i];
+}
+}
+void sort::insertion()
+{
+int i,j;
+float temp;
+for(i=1;i<n;i++)
+{
+ temp=perc[i];
+ for(j=i-1;j>=0&&perc[j]>temp;j--)
+  {
+   perc[j+1]=perc[j];
+  }
+ perc[j+1]=temp;
+}
+cout<<"\nSorted list is";
+display();
+}
+void sort::shell()
+{
+int i,j,k;
+float temp;
+for(i=n/2;i>0;i=i/2)
+{
+ for(j=i;j<n;j++)
+  {
+   temp=perc[j];
+   for(k=j-1;k<=0&&perc[k]>temp;k--)
+    {
+      perc[k+1]=perc[k];
+    }
+    perc[k+1]=temp;
+  }
+}
+cout<<"\nSorted list is:";
+display();
+}
+void sort::top()
+{
+for(int i=n-1;i>=n-5;i--)
+{
+cout<<" "<<perc[i];
+}
+}
+int main()
+{
+sort s;
+s.getdata();
+s.display();
+s.insertion();
+s.shell();
+s.top();
+return 0;
+}
