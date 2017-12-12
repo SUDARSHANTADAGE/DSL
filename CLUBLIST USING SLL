@@ -1,0 +1,228 @@
+#include<iostream>
+#include<malloc.h>
+#include<stdlib.h>
+using namespace std;
+struct node
+{
+int roll,prn;
+struct node *next;
+}*head=NULL;
+class club
+{
+struct node *t=NULL,*t1=NULL;
+public:
+ 	struct node *create(int,int);
+	void display(struct node *);
+	void insertp();
+	void insertm();
+ 	void inserts();
+	void deletep();
+	void deletes();
+	void deletem();
+	void concate(club);
+	void reverse(struct node *);
+	void count();
+};
+struct node *club::create(int x,int y)
+{
+struct node *temp;
+temp=(struct node *)malloc(sizeof(struct node));
+ if(temp==NULL)
+ {
+ cout<<"\nList is not present";
+ }
+ else
+ {
+ temp->roll=x;
+ temp->prn=y;
+ temp->next=NULL;
+ return temp;
+ }
+}
+void club::display(struct node *temp)
+{
+ if(head==NULL)
+ {
+ cout<<"\nList is empty";
+ }
+ else
+ {
+ int prn,roll;
+ while(temp!=NULL)
+ {
+  cout<<"\nroll:"<<temp->roll<<"\nprn:"<<temp->prn;
+  temp=temp->next;
+ }
+ }
+}
+void club::insertp()
+{
+int roll,prn;
+struct node *temp;
+cout<<"\nEnter the roll no. and the prn of the president";
+cin>>roll>>prn;
+temp=create(roll,prn);
+if(head==NULL)
+{
+ head=temp;
+}
+else
+{
+temp->next=head;
+head=temp;
+}
+}
+void club::insertm()
+{
+int loc,prn,roll;
+cout<<"\nEnter the location";
+cin>>loc;
+if(loc==1)
+{
+insertp();
+}
+else
+{
+cout<<"\nEnter the roll no. and the prn of the member";
+cin>>roll>>prn;
+struct node *temp;
+temp=create(roll,prn);
+t=head;
+for(int i=1;i<loc-1;i++)
+{
+ t=t->next;
+ t1=t;
+}
+t1=t->next;
+t->next=temp;
+temp->next=t1;
+}
+}
+void club::inserts()
+{
+int roll,prn;
+struct node *temp;
+cout<<"\nEnter the roll no. and the prn of the secretory";
+cin>>roll>>prn;
+temp=create(roll,prn);
+if(head==NULL)
+{
+head=temp;
+}
+else
+{
+t=head;
+while(t->next!=NULL)
+{
+ t=t->next;
+}
+t->next=temp;
+}
+}
+void club::deletep()
+{
+if(head==NULL)
+{
+cout<<"\nList is empty";
+}
+else
+{
+t=head;
+t=t->next;
+head=t;
+}
+}
+void club::deletem()
+{
+if(head==NULL)
+{
+cout<<"\nList is empty";
+}
+else
+{
+int s;
+cout<<"\nEnter the roll no. of the member that you want to delete";
+cin>>s;
+t=head;
+while(t->next!=NULL)
+{
+  t1=t;
+  t=t->next;
+  if(t->roll==s)
+  {
+   t1->next=t->next;
+   break;
+  }
+}
+}
+}
+void club::deletes()
+{
+if(head==NULL)
+{
+cout<<"\nList is not present";
+}
+else
+{
+ t=head;
+ while(t->next!=NULL)
+  {
+   t1=t;
+   t=t->next;
+  }
+ t1->next=NULL;
+}
+}
+void club::reverse(struct node *temp)
+{
+if(temp==NULL)
+return;
+else
+{
+reverse(temp->next);
+cout<<"\nprn:"<<temp->prn<<"\nroll:"<<temp->roll<<"\n";
+return;
+}
+}
+
+void club::concate(club v)
+{
+struct node *temp;
+	temp->next=v.t;
+}
+void club::count()
+{
+node *temp;
+int count=1;
+for(temp=head;temp->next!=NULL;temp=temp->next)
+count++;
+cout<<"\ntotal count is :"<<count;
+}
+
+int main()
+{
+club c,t;
+c.insertp();
+c.insertp();
+c.inserts();
+c.insertm();
+c.display(head);
+cout<<"\ndelete president";
+c.deletep();
+c.display(head);
+cout<<"\nDelete member";
+c.deletem();
+c.display(head);
+cout<<"\nDelete secretory";
+c.deletes();
+c.display(head);
+c.reverse(head);
+c.display(head);
+//c.concate(t);
+//c.display(head);
+c.count();
+c.display(head);
+
+
+return 0;
+}
