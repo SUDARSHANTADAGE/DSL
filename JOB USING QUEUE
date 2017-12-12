@@ -1,0 +1,93 @@
+#include<iostream>
+#define max 10
+using namespace std;
+int a[max];
+int r=-1;
+int f=-1;
+class job
+{
+public:
+	void add(int);
+	void deletej();
+	void display();
+};
+void job::add(int x)
+{
+if(r<max-1)
+{
+ if(r==-1&&f==-1)
+  {
+   r++;
+   f++; 
+   a[r]=x;
+  }
+ else 
+  {
+   r++;
+   a[r]=x;
+  }
+}
+else
+{
+cout<<"\nQueue is overflow";
+}
+}
+void job::deletej()
+{
+ if(f==-1)
+ {
+  cout<<"\nQueue is underflow";
+ }
+ else if(r==f)
+ {
+  cout<<"\nDeleted job is:"<<a[f];
+  r=f=-1;
+ }
+ else
+ {
+  cout<<"\nDeleted job is:"<<a[f];
+  f++;
+ } 
+}
+void job::display()
+{
+ if(f==-1)
+{
+ cout<<"\nQueue is underflow";
+}
+else
+{
+ int i;
+for(i=f;i<=r;i++)
+{
+cout<<"\t"<<a[i];
+}
+}
+}
+int main()
+{
+int x,ch;
+job j;
+do
+{
+cout<<"\nEnter your choice\n1.add\n2.delete\n3.display";
+cin>>ch;
+switch(ch)
+{
+case 1:
+       cout<<"\nEnter the element of job";
+ 	cin>>x;
+	j.add(x);
+	break;
+case 2:
+ 	j.deletej();
+	break;
+case 3:
+	j.display();
+	break;
+default:
+ 	cout<<"\nInvalid choice";
+}
+}while(1);
+return 0;
+}
