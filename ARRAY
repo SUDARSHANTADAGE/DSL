@@ -1,0 +1,195 @@
+#include<iostream>
+using namespace std;
+class game
+{
+int c,b,m,i,j,k,x;
+int setAll[60],setA[20],setB[20],setC[20];
+public:
+game()
+{
+c=b=m=0;
+i=j=k=0;
+}
+void getdata();
+void uni();
+void comman();
+void ninor();
+void onlycri();
+void onlybat();
+void display();
+};
+void game::getdata()
+{
+cout<<"\nEnter the total strenth of class";
+cin>>m;
+for(i=0;i<m;i++)
+{
+setAll[i]=i+1;
+}
+cout<<"\nRoll no. of students are:";
+for(i=0;i<m;i++)
+{
+cout<<setAll[i]<<"\t";
+}
+cout<<"\nHow many students play cricket";
+cin>>c;
+for(i=0;i<c;i++)
+{
+cout<<"\nEnter the roll no.";
+cin>>x;
+if(x<m)
+setA[i]=x;
+else
+{
+cout<<"\nRoll no. exceeds the total straighth of the class. Please try again";
+cout<<"\nEnter the roll no.";
+cin>>x;
+setA[i]=x;
+}
+}
+cout<<"\nHow many students play batminton";
+cin>>b;
+
+for(j=0;j<b;j++)
+{
+cout<<"\nEnter the roll no.";
+cin>>x;
+if(x<m)
+setB[j]=x;
+else
+{
+cout<<"\nRoll no. exceeds the total straighth of the class. Please try again";
+cout<<"\nEnter the roll no.";
+cin>>x;
+setB[j]=x;
+}
+}
+}
+void game::display()
+{
+cout<<"\nStudents who play cricket are:";
+for(i=0;i<c;i++)
+{
+cout<<setA[i]<<"\t";
+}
+cout<<"\nStudents who play batminton are:";
+for(j=0;j<b;j++)
+{
+cout<<setB[j]<<"\t";
+}
+}
+void game::uni()
+{
+int flag=0;
+for(i=0;i<c;i++)
+{
+setC[k]=setA[i];
+k++;
+}
+for(j=0;j<b;j++)
+{
+ for(i=0;i<c;i++) 
+  {
+    if(setB[j]==setA[i])
+      {
+	flag=1;
+      }
+  }
+ if(flag==0)
+ {
+  setC[k]=setB[j];
+  k++;
+ }
+flag=0;
+}
+cout<<"\nStuents who play either cricker or batminton are:";
+for(i=0;i<k;i++)
+{
+cout<<"\t"<<setC[i];
+}
+}
+void game::comman()
+{
+cout<<"\nStudents who play Both the games are:";
+for(j=0;j<b;j++)
+{
+ for(i=0;i<c;i++)
+  {
+   if(setB[j]==setA[i])
+    {
+      cout<<setA[i]<<"\t";
+    } 
+  }
+}
+}
+void game::onlycri()
+{
+int flag=0;
+cout<<"\nStudents Who play only cricket are:";
+for(i=0;i<c;i++)
+{
+ for(j=0;j<b;j++)
+  {
+    if(setA[i]==setB[j])
+    {
+     flag=1;
+    }
+  }
+ if(flag==0)
+ {
+  cout<<setA[i]<<"\t";
+ }
+flag=0;
+}
+}
+void game::onlybat()
+{
+int flag=0;
+cout<<"\nStudents who play only batminton are:";
+for(j=0;j<b;j++)
+{
+ for(i=0;i<c;i++)
+  {
+    if(setB[j]==setA[i])
+    {
+     flag=1;
+    }
+  }
+ if(flag==0)
+ {
+  cout<<setB[j]<<"\t";
+ }
+flag=0;
+}
+}
+void game::ninor()
+{
+int flag=0;
+cout<<"\nStudent who play neither cricket nor batminton are:";
+for(i=0;i<m;i++)
+{
+ flag=0;
+ for(j=0;j<k;j++)
+  {
+   if(setAll[i]==setC[j])
+     flag=1;
+  }
+ if(flag==0)
+ {
+  cout<<setAll[i]<<"\t";
+ }
+flag=0;
+}
+}
+int main()
+{
+game g;
+g.getdata();
+g.display();
+g.uni();
+g.comman();
+g.onlycri();
+g.onlybat();
+g.ninor();
+return 0;
+}
