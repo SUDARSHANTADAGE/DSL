@@ -1,0 +1,243 @@
+#include<iostream>
+using namespace std;
+class mat
+{
+int a[10][10],b[10][10],n,i,j;
+public:
+	void getdata();
+	void display();
+	void add();
+	void sub();
+	void mult();
+	void trans();
+	void utri();
+	void sumd();
+};
+void mat::getdata()
+{
+cout<<"\nEnter the rows and columb of the matrix";
+cin>>n;
+cout<<"\nEnter the element of the first matrix";
+for(i=0;i<n;i++)
+ {
+   for(j=0;j<n;j++)
+     {
+       cin>>a[i][j];
+     }
+ }
+cout<<"\nEnter the element of the second matrix";
+for(i=0;i<n;i++)
+ {
+   for(j=0;j<n;j++)
+     {
+       cin>>b[i][j];
+     }
+ }
+}
+void mat::display()
+{
+cout<<"\nFirst matrix is:\n";
+for(i=0;i<n;i++)
+ {
+   for(j=0;j<n;j++)
+     {
+       cout<<a[i][j]<<"\t";
+     }
+cout<<endl;
+ }
+cout<<"\nSecond matrix is:\n";
+for(i=0;i<n;i++)
+ {
+   for(j=0;j<n;j++)
+     {
+       cout<<b[i][j]<<"\t";
+     }
+cout<<endl;
+ }
+}
+void mat::add()
+{
+int add[n][n];
+ for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+      {
+       add[i][j]=a[i][j]+b[i][j];
+      }
+  }
+cout<<"\nAddition of the matrices are:\n";
+for(i=0;i<n;i++)
+{
+  for(j=0;j<n;j++)
+    {
+      cout<<add[i][j]<<"\t";
+    }
+ cout<<endl;
+}
+}
+void mat::sub()
+{
+int sub[n][n];
+ for(i=0;i<n;i++)
+  {
+    for(j=0;j<n;j++)
+      {
+       sub[i][j]=a[i][j]-b[i][j];
+      }
+  }
+cout<<"\nSUbtraction of the matrices are:\n";
+for(i=0;i<n;i++)
+{
+  for(j=0;j<n;j++)
+    {
+      cout<<sub[i][j]<<"\t";
+    }
+ cout<<endl;
+}
+}
+void mat::mult()
+{
+int mult[n][n];
+for(i=0;i<n;i++)
+{
+ for(j=0;j<n;j++)
+  {
+   mult[i][j]=0;
+    for(int k=0;k<n;k++)
+     {
+      mult[i][j]=mult[i][j]+a[i][k]*b[k][j];
+     }
+   }
+ }
+cout<<"\nMultiplication of the matrices are:\n";
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+cout<<mult[i][j]<<"\t";
+}
+cout<<endl;
+}
+}
+void mat::trans()
+{
+int trans[n][n];
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+ trans[i][j]=a[j][i];
+}
+}
+cout<<"\nTranspose of the first matrix are:\n";
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+cout<<trans[i][j]<<"\t";
+}
+cout<<endl;
+}
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+trans[i][j]=b[j][i];
+}
+}
+cout<<"\nTranspose of the second matrix are:\n";
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+cout<<trans[i][j]<<"\t";
+}
+cout<<endl;
+}
+}
+void mat::utri()
+{
+int flag=1;
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+ if(i<j)
+  {
+   if(a[i][j]==0)
+    {
+     flag=0;
+    }
+   else
+    {
+     flag=1;
+     break;
+    }
+ }
+ }
+ }
+if(flag=0)
+{
+ cout<<"\nFirst matrix is upper triangular";
+}
+else
+{
+cout<<"\nFirst matrix is not upper triangular";
+}
+flag=1;
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+ if(i<j)
+  {
+   if(b[i][j]==0)
+    {
+     flag=0;
+    }
+   else
+    {
+     flag=1;
+     break;
+    }
+ }
+ }
+ }
+if(flag=0)
+{
+ cout<<"\nSecond matrix is upper triangular";
+}
+else
+{
+cout<<"\nSecond matrix is not upper triangular";
+}
+}
+void mat::sumd()
+{
+int suma=0,sumb=0;
+cout<<"\nSum of diagonal of first matrix is:";
+for(i=0;i<n;i++)
+{
+suma=suma+a[i][i];
+}
+cout<<suma<<endl;
+cout<<"\nSum of diadonal of second matrix is:";
+for(i=0;i<n;i++)
+{
+sumb=sumb+b[i][i];
+}
+cout<<sumb<<endl;
+}
+int main()
+{
+mat m;
+m.getdata();
+m.display();
+m.add();
+m.sub();
+m.mult();
+m.utri();
+m.trans();
+m.sumd();
+return 0;
+}
