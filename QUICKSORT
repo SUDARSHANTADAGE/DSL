@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+class quick
+{
+float a[20];
+public:
+	int part(float a[20],int l,int r);
+	void qsort(float a[20],int l,int r);
+};
+int quick::part(float a[],int l,int r)
+{
+int i,j;
+float v,t;
+	v=a[l];
+	i=l;
+	j=r+1;
+   do
+    {
+	do
+	  i++;
+	while(a[i]<=v&&i<=r);
+	do
+	 j--;
+	while(a[j]>v);
+	if(i<j)
+ 	{
+	t=a[i];
+	a[i]=a[j];
+	a[j]=t;
+	}
+     }while(i<j);
+      a[l]=a[j];
+      a[j]=v;
+      return j;
+}
+void quick::qsort(float a[20],int l,int r)
+{
+int j;
+    if(l<r)
+      {
+       j=part(a,l,r);
+       qsort(a,l,j-1);
+       qsort(a,j+1,r);
+      }
+}
+int main()
+{
+int i,n;
+float m[20];
+quick q;
+cout<<"\nEnter the total no. of students";
+cin>>n;
+cout<<"\nEnter the percentage";
+for(i=0;i<n;i++)
+{
+cin>>m[i];
+}
+q.qsort(m,0,n-1);
+cout<<"\nSorted list is:";
+for(i=0;i<n;i++)
+{
+cout<<" "<<m[i];
+}
+cout<<"\nTop five scorer are:";
+for(i=n-1;i>=n-5;i--)
+{
+cout<<" "<<m[i];
+}
+return 0;
+}
